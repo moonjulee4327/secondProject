@@ -1,6 +1,6 @@
 package kr.or.ddit.app.acm.controller;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,7 +25,6 @@ public class ListAcommodationController extends HttpServlet{
 		
 		// 2. 회원목록 조회
 		List<AcommodationVO> acmList = acmService.getAllAcmList();
-		
 		req.setAttribute("acmList", acmList);
 		
 		RequestDispatcher dispatcher = 

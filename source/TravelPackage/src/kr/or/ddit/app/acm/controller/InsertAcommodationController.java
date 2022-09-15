@@ -1,6 +1,6 @@
 package kr.or.ddit.app.acm.controller;
 
-import java.io.IOException;  
+import java.io.IOException;    
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -31,12 +31,12 @@ public class InsertAcommodationController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		req.setCharacterEncoding("UTF-8");
 		// 1. 파라미터 데이터 가져오기
-		int acmId = Integer.parseInt(req.getParameter("acmId"));
+		String acmId = req.getParameter("acmId");
 		String acmNm = req.getParameter("acmNm");
 		String acmSe = req.getParameter("acmSe");
 		String Addr = req.getParameter("Addr");
-		int Price = Integer.parseInt(req.getParameter("Price"));
-		int Qty = Integer.parseInt(req.getParameter("Qty"));
+		String Price = req.getParameter("Price");
+		String Qty = req.getParameter("Qty");
 		String Writer = req.getParameter("Writer");
 
 		// 2. 서비스 객체 생성하기
@@ -56,6 +56,7 @@ public class InsertAcommodationController extends HttpServlet {
 		acm.setPrice(Price);
 		acm.setQty(Qty);
 		acm.setWriter(Writer);
+		acm.setAtchFileId(atchFileVO.getATCH_FILE_ID());
 
 		int cnt = acmService.register(acm);
 
@@ -73,9 +74,9 @@ public class InsertAcommodationController extends HttpServlet {
 		
 		
 		// 4. 목록 조회 화면으로 이동
-//		 	req.getRequestDispatcher("/acm/AcmList.jsp").forward(req, resp);
+//		 	req.getRequestDispatcher("/acm/AcmList.do").forward(req, resp);
 		
-		String redirectUrl = req.getContextPath() + "/acm/acmList.do"; // req.getContexrtPath() >> ServletExam 
+		String redirectUrl = req.getContextPath() + "/acm/AcmList.do"; // req.getContexrtPath() >> ServletExam 
 		
 		resp.sendRedirect(redirectUrl);
 		}

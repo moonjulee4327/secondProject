@@ -93,11 +93,11 @@ public class AtchFileServiceImpl implements IAtchFileService {
 												? "" 
 												: orignlFileNm.substring(orignlFileNm.lastIndexOf(".") + 1);
 					
-					atchFileVO.setStreFileNm(saveFileName);
-					atchFileVO.setFileSize(fileSize);
-					atchFileVO.setOrignlFileNm(orignlFileNm);
-					atchFileVO.setFileStreCours(saveFilePath);
-					atchFileVO.setFileExtsn(fileExtension);
+					atchFileVO.setATCH_FILE_DE_SAV(saveFileName);
+					atchFileVO.setATCH_FILE_DE_SIZE(fileSize);
+					atchFileVO.setATCH_DE_OG(orignlFileNm);
+					atchFileVO.setATCH_FILE_DE_PATH(saveFilePath);
+					atchFileVO.setATCH_FILE_DE_EXT(fileExtension);
 					
 					fileDAO.insertAtchFileDetail(session, atchFileVO);
 					

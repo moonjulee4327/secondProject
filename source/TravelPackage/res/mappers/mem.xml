@@ -10,15 +10,39 @@
 		VALUES (
 		#{memMail}, #{memPw}, #{memNm}, #{memBir}, #{memTel}, #{memAddr},
 		#{memPreReg})
-
+s
 	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="String">
+	
+		SELECT MEM_MAIL
+		FROM MEM
+		WHERE MEM_MAIL = #{MEM_MAIL}
+	
+	</select>
 
 	<!-- 로그인 아이디 있는지 체크 -->
-	<select id="selectMem" parameterType="String" resultType="memVO">
+	<select id="selectMem" parameterType="memVO" resultType="memVO">
 		select
 		*
 		from mem
 		where mem_mail = #{memMail}
+	</select>
+
+	<select id="searchId" parameterType="memVO" resultType="memVO">
+		select *
+		from MEM
+		where MEM_NM = #{memNm}
+		and MEM_TEL = #{memTel}
+
+	</select>
+
+	<select id="searchPw" parameterType="memVO" resultType="memVO">
+		select *
+		from MEM
+		where mem_mail = #{memMail}
+		and MEM_TEL = #{memTel}
+
 	</select>
 
 </mapper>

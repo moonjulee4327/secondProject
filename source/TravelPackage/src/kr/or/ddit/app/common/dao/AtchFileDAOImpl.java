@@ -1,6 +1,6 @@
 package kr.or.ddit.app.common.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -25,12 +25,12 @@ public class AtchFileDAOImpl implements IAtchFileDAO {
 	@Override
 	public int insertAtchFile(SqlSession session, AtchFileVO atchFileVO) {
 								// 네임스페이스.쿼리문
-		return session.insert("atchFile.insertAtchFile",atchFileVO);
+		return session.insert("atchFile.AtchFileInsert",atchFileVO);
 	}
 
 	@Override
 	public int insertAtchFileDetail(SqlSession session, AtchFileVO atchFileVO) {
-		return session.insert("atchFile.insertAtchFileDetail", atchFileVO);
+		return session.insert("atchFile.AtchFileInsertDetail", atchFileVO);
 	}
 
 	@Override

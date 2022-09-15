@@ -1,6 +1,7 @@
 package kr.or.ddit.app.mem.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import kr.or.ddit.app.mem.service.IMemService;
 import kr.or.ddit.app.mem.service.MemServiceImpl;
@@ -30,29 +32,44 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("서블릿이 호출되었습니다.");
+		resp.setContentType("text/html; charset=utf-8");
 		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 
 		String memMail = req.getParameter("memMail");
 		String memPw = req.getParameter("memPw");
 
 		String res = getEncrypt(memPw);
+		PrintWriter out = resp.getWriter();
 
 		MemberVO mv = new MemberVO();
 		mv.setMemMail(memMail);
+		mv.setMemPw(res);
 		IMemService memservice = MemServiceImpl.getInstance();
-
 		MemberVO rs = memservice.selectMem(mv);
 
-		if (memMail.equals(rs.getMemMail()) && res.equals(rs.getMemPw())) {
-			String memNm = rs.getMemNm();
-			System.out.println("환영합니다 " + memNm + "님");
-		} else {
+		try {
+			if (rs.getMemPw().equals(res)) {
+				String memNm = rs.getMemNm();
+				out.println("<html><head></head><body>");
+				out.println(("환영합니다 "  + memNm + "님"));
+				out.println("</body></html>");
+			} else {
 
-			System.out.println("이메일과 비밀번호를 확인해하세요.");
+				out.println("<html><head></head><body>");
+				out.println("이메일과 비밀번호를 확인해하세요.");
+				out.println("</body></html>");
 
+			}
+
+		} catch (NullPointerException e) {
+			out.println("<html><head></head><body>");
+			out.println("등록되지 않은 아이디 입니다.");
+			out.println("</body></html>");
 		}
 
 	}
+
 
 	public String getEncrypt(String pwd) {
 

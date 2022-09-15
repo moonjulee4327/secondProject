@@ -6,6 +6,11 @@ public interface IMemService {
 	
 	public int singUp(MemberVO mv);
 	
+	public boolean idCheck(String memMail);
+	
 	public MemberVO selectMem(MemberVO mv);
 	
+	public MemberVO searchId(MemberVO mv);
+	
+	public MemberVO searchPw(MemberVO mv);
 }

@@ -14,6 +14,8 @@
 	<typeAliases>
 		<typeAlias type="kr.or.ddit.app.common.vo.AtchFileVO" alias="atchVO"/>
 		<typeAlias type="kr.or.ddit.app.mem.vo.MemberVO" alias="memVO"/>
+		<typeAlias type="kr.or.ddit.app.vehc.vo.VehcVO" alias="vehcVO"/>
+		<typeAlias type="kr.or.ddit.app.tour.vo.TourVO" alias="tourVO"/>
 		<typeAlias type="kr.or.ddit.app.acm.vo.AcommodationVO" alias="acmVO"/>
 	</typeAliases>
 	
@@ -37,8 +39,10 @@
 	<mappers>
 		<mapper resource="mappers/atchFile.xml"/>
 		<mapper resource="mappers/mem.xml"/>
+		<mapper resource="mappers/vehc.xml"/>
+		<mapper resource="mappers/tour.xml"/>
 		<mapper resource="mappers/acm.xml"/>
-		
+
 	</mappers>
 	
 </configuration>

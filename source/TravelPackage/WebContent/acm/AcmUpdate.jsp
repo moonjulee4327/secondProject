@@ -18,9 +18,9 @@ AcommodationVO acmv = (AcommodationVO) request.getAttribute("acmv");
 <title>상품 수정</title>
 </head>
 <body>
-   <form action="update.do" method="post" enctype="multipart/form-data">
+   <form action="AcmUpdate.do" method="post" enctype="multipart/form-data">
       <input type="hidden" name="acmId" value="<%=acmv.getAcmId() %>">
-      <input type="hidden" name="fileId" value="<%=acmv.getAcmAtchFileId() %>">
+      <input type="hidden" name="fileId" value="<%=acmv.getAtchFileId() %>">
       <table border="1" bgcolor="aqua">
       <tr>
          <td>I D :</td>
@@ -60,7 +60,7 @@ AcommodationVO acmv = (AcommodationVO) request.getAttribute("acmv");
 				for(AtchFileVO fileVO : atchFileList){
 			%>
 				<div>
-					<a href="<%=request.getContextPath()%>/filedown.do?fileId=<%=fileVO.getAtchFileId()%>&fileSn=<%=fileVO.getFileSn()%>"><%=fileVO.getOrignlFileNm() %></a>
+					<a href="<%=request.getContextPath()%>/filedown.do?fileId=<%=fileVO.getATCH_FILE_ID()%>&fileSn=<%=fileVO.getATCH_DE_SEQ()%>"><%=fileVO.getATCH_DE_OG() %></a>
 				</div> <% 
 				}
 			}

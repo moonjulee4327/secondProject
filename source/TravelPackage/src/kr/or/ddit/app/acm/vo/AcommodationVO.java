@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class AcommodationVO {
 
-	private int acmId;
+	private String acmId;
 	private String acmNm;
 	private String acmSe;
 	private String Addr;
-	private int Price;
-	private int Qty;
+	private String Price;
+	private String Qty;
 	private Date acmRd;
 	private String Writer;
-	private long AcmAtchFileId = -1;
+	private long atchFileId = -1;
 	
-	public int getAcmId() {
+	public String getAcmId() {
 		return acmId;
 	}
-	public void setAcmId(int acmId) {
+	public void setAcmId(String acmId) {
 		this.acmId = acmId;
 	}
 	public String getAcmNm() {
@@ -38,16 +38,16 @@ public class AcommodationVO {
 	public void setAddr(String addr) {
 		Addr = addr;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return Price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.Price = price;
 	}
-	public int getQty() {
+	public String getQty() {
 		return Qty;
 	}
-	public void setQty(int qty) {
+	public void setQty(String qty) {
 		Qty = qty;
 	}
 	public Date getAcmRd() {
@@ -62,10 +62,10 @@ public class AcommodationVO {
 	public void setWriter(String writer) {
 		this.Writer = writer;
 	}
-	public long getAcmAtchFileId() {
-		return AcmAtchFileId;
+	public long getAtchFileId() {
+		return atchFileId;
 	}
-	public void setAcmAtchFileId(long acmAtchFileId) {
-		AcmAtchFileId = acmAtchFileId;
+	public void setAtchFileId(long atchFileId) {
+		this.atchFileId = atchFileId;
 	}
 }

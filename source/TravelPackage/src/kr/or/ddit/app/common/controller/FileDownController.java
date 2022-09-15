@@ -28,7 +28,7 @@ public class FileDownController extends HttpServlet {
 						? Long.parseLong(req.getParameter("fileId"))
 						: -1;
 		
-		int fileSn = req.getParameter("fileSn") != null 
+		long atchDeSeq = req.getParameter("fileSn") != null 
 						? Integer.parseInt(req.getParameter("fileSn"))
 						: 1;
 						
@@ -36,18 +36,18 @@ public class FileDownController extends HttpServlet {
 		IAtchFileService fileService = AtchFileServiceImpl.getInstance();
 		
 		AtchFileVO fileVO = new AtchFileVO();
-		fileVO.setAtchFileId(fileId);
-		fileVO.setFileSn(fileSn);
+		fileVO.setATCH_FILE_ID(fileId);
+		fileVO.setATCH_DE_SEQ(atchDeSeq);
 		
 		fileVO = fileService.getAtchFileDetail(fileVO);
 		
 		// 파일 다운로드 처리를 위한 응답헤더 정보 설정하기
 		resp.setContentType("application/octet-stream");
 		resp.setHeader("Content-Disposition", "attachment; filename=\""
-						+ URLEncoder.encode(fileVO.getOrignlFileNm(),"UTF-8"));
+						+ URLEncoder.encode(fileVO.getATCH_DE_OG(),"UTF-8"));
 		
 		BufferedInputStream bis = new BufferedInputStream(
-										new FileInputStream(fileVO.getFileStreCours()));
+										new FileInputStream(fileVO.getATCH_FILE_DE_PATH()));
 		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
 		
 		

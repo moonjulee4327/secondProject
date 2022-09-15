@@ -1,34 +1,92 @@
-/**
- * 
- */
+/*
+	회원가입 시 비밀번호 확인
+*/
 let compareResult = false;
+
  function comparePwd() {
 	let pwd1 = $("#pw").val();
 	let pwd2 = $("#ckPw").val();
 	let pwResult = $("#pwResult");
 	
-	//alert(pwd1);
-	//alert(pwd2);
-	
 	if(pwd1 == pwd2){
 		compareResult = true;
-		pwResult.text("비밀번호가 일치합니다.");
+		pwResult.css("color","blue");
+		pwResult.html("비밀번호가 일치합니다.");
+		if(pwd1 == ""){
+			pwResult.html("비밀번호를 입력해주세요.");
+		}
 	}else{
 		compareResult = false;
-		pwResult.text("비밀번호가 일치하지 않습니다.");
+		pwResult.css("color","red");
+		pwResult.html("비밀번호가 일치하지 않습니다. 다시 한번 확인해주세요.");
+		if(pwd1 == ""){
+			pwResult.html("비밀번호를 입력해주세요.").css("color","blue");
+		}
 	}
 }
 
-function joinMember() {
-	if(compareResult == true){
-		
-	}else{
-		alert("비밀번호가 일치하지 않아 회원가입이 불가합니다!");
-		return;
+/*
+	회원가입 시 데이터 검증
+	(아이디 : 이메일 형식)
+	(비밀번호 : 영문자(대소문자 상관없음)+숫자+특수문자 조합으로 8~25자리)
+	(전화번호 : 숫자만 입력가능)
+*/
+function checkForm() {
+	let id = $("#mail").val();
+	let pw = $(".pw").val();
+	let tel = $(".tel").val();
+	
+	if(id == ""){
+		alert("아이디를 입력해주세요.");
+		return false;	
 	}
+	if(pw == ""){
+		alert("비밀번호를 입력해주세요.");
+		return false;	
+	}
+	
+	let idCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	if(!idCheck.test(id)){
+		alert("아이디는 이메일 형식을 사용해야 합니다.");
+		return false;
+	}
+	
+	let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+	if(!pwdCheck.test(pw)){
+		alert("비밀번호는 영문자(대소문자 상관없음)+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+		return false;
+	}
+	
+	let telCheck = /^\d{3}\d{3,4}\d{4}$/;
+	if(!telCheck.test(tel)){
+		alert("전화번호는 숫자만 입력할 수 있습니다.");
+		return false;
+	}
+	
+	
+	let btnSubmit = $("#btnSubmit");
+	if(compareResult != true){
+		alert("비밀번호를 확인해주세요.");
+		return btnSubmit.attr("type","button");
+	}
+	return btnSubmit.attr("type","submit");
+}
+
+/*
+	회원가입 ID 중복확인
+*/
+
+function checkId() {
+	window.open("/TravelPackage/login/IdCheck.jsp","_blank","width=500px height=500px");
+	
 }
 
 
+
+
+/*
+	회원가입 주소API
+*/ 
 //본예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
 	   new daum.Postcode({
@@ -84,3 +142,7 @@ function sample4_execDaumPostcode() {
          }
      }).open();
 }
+
+
+
+

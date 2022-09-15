@@ -12,18 +12,18 @@ import javax.servlet.http.HttpSession;
 import kr.or.ddit.app.acm.service.AcommodationServiceImpl;
 import kr.or.ddit.app.acm.service.IAcommodationService;
 
-@WebServlet("/acm/delete.do")
+@WebServlet("/acm/AcmDelete.do")
 public class DeleteAcommodationController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int acmId = Integer.parseInt(req.getParameter("acmId"));
+		String acmId = req.getParameter("acmId");
 		
 		// 1. 서비스 객체 생성하기
 		IAcommodationService acmService = AcommodationServiceImpl.getInstance();
 		
 		// 2. 삭제 처리
-		int cnt = acmService.remove(acmId);
+		int cnt = acmService.delete(acmId);
 		
 		String msg = "";
 		

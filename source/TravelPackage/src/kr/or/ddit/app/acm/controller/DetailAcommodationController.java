@@ -17,12 +17,12 @@ import kr.or.ddit.app.common.service.IAtchFileService;
 import kr.or.ddit.app.common.vo.AtchFileVO;
 
 
-@WebServlet("/acm/detail.do")
+@WebServlet("/acm/AcmDetail.do")
 public class DetailAcommodationController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 int acmId = Integer.parseInt(req.getParameter("acmId"));
+		 String acmId = req.getParameter("acmId");
 	      
 	      // 1. 서비스 객체 생성하기
 	      IAcommodationService acmService = AcommodationServiceImpl.getInstance();
@@ -30,10 +30,10 @@ public class DetailAcommodationController extends HttpServlet{
 	      
 	      IAtchFileService fileService = AtchFileServiceImpl.getInstance();
 	      
-	      if(acmv.getAcmAtchFileId() > 0) { // 첨부파일 존재
+	      if(acmv.getAtchFileId() > 0) { // 첨부파일 존재
 	    	  // 1-2. 첨부파일 정보 조회
 	    	  AtchFileVO fileVO = new AtchFileVO();
-	    	  fileVO.setAtchFileId(acmv.getAcmAtchFileId());
+	    	  fileVO.setATCH_FILE_ID(acmv.getAtchFileId());
 	    	  
 	    	  List<AtchFileVO> atchFileList = 
 	    			  fileService.getAtchFileList(fileVO);
@@ -49,6 +49,6 @@ public class DetailAcommodationController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		doGet(req, resp);
 	}
 }

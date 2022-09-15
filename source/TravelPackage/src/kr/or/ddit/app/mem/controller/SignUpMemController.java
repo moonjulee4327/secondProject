@@ -35,9 +35,11 @@ public class SignUpMemController extends HttpServlet {
       String memNm = req.getParameter("memNm");
       String memBir = req.getParameter("memBir");
       String memTel = req.getParameter("memTel");
-      String memAddr = req.getParameter("memAddr");
+      String memAddr1 = req.getParameter("memAddr1");
+      String memAddr2 = req.getParameter("memAddr2");
+      String memAddr3 = req.getParameter("memAddr3");
       String memPreReg = req.getParameter("memPreReg");
-
+   
       MemberVO mv = new MemberVO();
 
       mv.setMemMail(memMail);
@@ -45,7 +47,7 @@ public class SignUpMemController extends HttpServlet {
       mv.setMemNm(memNm);
       mv.setMemBir(memBir);
       mv.setMemTel(memTel);
-      mv.setMemAddr(memAddr);
+      mv.setMemAddr(memAddr1 + " " + memAddr2 + memAddr3);
       mv.setMemPreReg(memPreReg);
 
       IMemService memservice = MemServiceImpl.getInstance();
@@ -59,7 +61,7 @@ public class SignUpMemController extends HttpServlet {
          System.out.println("DB 저장 실패");
       }
 
-//      req.getRequestDispatcher("").forward(req, resp);
+      req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
 
    }
 

@@ -9,10 +9,7 @@
 <body>
 	<form action="AcmInsert.do" method="post" enctype="multipart/form-data">
 		<table bgcolor = "aqua">
-			<tr>
-				<td>I D :</td>
-				<td><input type="text" name="acmId" value=""></td>
-			</tr>
+			
 			<tr>
 				<td>숙박업소명 :</td>
 				<td><input type="text" name="acmNm" value=""></td>
@@ -26,21 +23,22 @@
 				<td><textarea rows="3" cols="20" name="Addr"></textarea></td>
 			</tr>
 			<tr>
-				<td>가격 :</td>
+				<td>투숙금액 :</td>
 				<td><textarea rows="3" cols="20" name="Price"></textarea></td>
 			</tr>
 			<tr>
-				<td>수량 :</td>
+				<td>객실수 :</td>
 				<td><textarea rows="3" cols="20" name="Qty"></textarea></td>
 			</tr>
 			<tr>
-				<td>작성자 :</td>
+				<td>게시글작성자 :</td>
 				<td><textarea rows="3" cols="20" name="Writer"></textarea></td>
 			</tr>
 			<tr>
-				<td>첨부파일1 :</td>
-				<td><input type="file" name="atchFile"></td>
+				<td>첨부파일 :</td>
+				<td><input type="file" name="atchFileId"></td>
 			</tr>
+			
 		</table>
 		<input type="submit" value="상품등록">
 	</form>

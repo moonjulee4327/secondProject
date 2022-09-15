@@ -2,71 +2,73 @@
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="atchFile">	<!-- 자바 패키지와 같은 역할 -->
 	
-	<insert id="insertAtchFile">
+	<insert id="AtchFileinsert">
 		
 		<selectKey order="BEFORE" keyProperty="atchFileId" resultType="long">
-			select ATCH_FILE_SEQ.nextval from dual
+			SELECT 
+			ATCH_FILE_SEQ.nextval 
+			FROM dual
 		</selectKey>
 		
-		insert into atch_file
-		(ATCH_FILE_ID, CREAT_DT, USE_AT)
-		values(#{atchFileId},sysdate, 'Y')
+		INSERT INTO ATCH_FILE
+		(ATCH_FILE_ID, ATCH_FILE_DAY, ATCH_FILE_ABLE)
+		VALUES (#{ATCH_FILE_ID}, sysdate, 'Y')
 	
 	</insert>
 	
-	<insert id="insertAtchFileDetail">
+	<insert id="AtchFileInsertDetail">
 		
-		insert into atch_file_detail
+		INSERT INTO ATCH_DE
 		(
-			ATCH_FILE_ID
-			,FILE_SN
-			,FILE_STRE_COURS
-			,STRE_FILE_NM
-			,ORIGNL_FILE_NM
-			,FILE_EXTSN
-			,FILE_CN
-			,FILE_SIZE
-		)
-		values
+			  ATCH_FILE_ID
+			,  ATCH_DE_SEQ
+			,  ATCH_DE_OG
+			,  ATCH_FILE_DE_SAV
+			,  ATCH_FILE_DE_EXT
+			,  ATCH_FILE_DE_CONT
+			,  ATCH_FILE_DE_PATH
+			,  ATCH_FILE_DE_SIZE
+		)      
+		VALUES
 		(
-			#{atchFileId}
-			,(select nvl(max(file_sn),0) + 1
-			  from atch_file_detail
-			  where atch_file_id = #{atchFileId} )
-			,#{fileStreCours}
-			,#{streFileNm}
-			,#{orignlFileNm}
-			,#{fileExtsn}
-			,#{fileCn}
-			,#{fileSize}
+			#{ATCH_FILE_ID}
+			,(select nvl(max(ATCH_DE_SEQ),0) + 1
+			  from ATCH_DE
+			  where ATCH_FILE_ID = #{ATCH_FILE_ID} )
+			,#{ATCH_DE_OG}
+			,#{ATCH_FILE_DE_SAV}
+			,#{ATCH_FILE_DE_EXT}
+			,#{ATCH_FILE_DE_CONT}
+			,#{ATCH_FILE_DE_PATH}
+			,#{ATCH_FILE_DE_SIZE}
 		)
 		
 	</insert>
 	
 	<resultMap type="atchVO" id="atchFileDetailMap">
-		<result property="atchFileId"    column="ATCH_FILE_ID" />
-		<result property="fileSn"    column="FILE_SN" />
-		<result property="fileStreCours"    column="FILE_STRE_COURS" />
-		<result property="streFileNm"    column="STRE_FILE_NM" />
-		<result property="orignlFileNm"    column="ORIGNL_FILE_NM" />
-		<result property="fileExtsn"    column="FILE_EXTSN" />
-		<result property="fileCn"    column="FILE_CN" />
-		<result property="fileSize"    column="FILE_SIZE" />
+		<result property="ATCH_FILE_ID "    column="ATCH_FILE_ID" />
+		<result property="ATCH_DE_SEQ "    column="ATCH_DE_SEQ" />
+		<result property="ATCH_DE_OG "    column="ATCH_DE_OG" />
+		<result property="ATCH_FILE_DE_SAV "    column="ATCH_FILE_DE_SAV" />
+		<result property="ATCH_FILE_DE_EXT "    column="ATCH_FILE_DE_EXT" />
+		<result property="ATCH_FILE_DE_CONT "    column="ATCH_FILE_DE_CONT" />
+		<result property="ATCH_FILE_DE_PATH "    column="ATCH_FILE_DE_PATH" />
+		<result property="ATCH_FILE_DE_SIZE "    column="ATCH_FILE_DE_SIZE" />
 	</resultMap>
 	
 	
 	<select id="getAtchFileList" parameterType="atchVO" resultMap="atchFileDetailMap">
 	
-		select * from atch_file_detail
-		where atch_file_id = #{atchFileId}
+		select * from ATCH_DE
+		where ATCH_FILE_ID = #{ATCH_FILE_ID}
 		
 	</select>
 	
 	
 	<select id="getAtchFileDetail" resultType="atchVO">
-		select * from atch_file_detail
-		where atch_file_id = #{atchFileId}
-			and file_sn = #{fileSn}
+		select * from ATCH_DE
+		where ATCH_FILE_ID = #{ATCH_FILE_ID}
+			and ATCH_DE_SEQ = #{ATCH_DE_SEQ}
 	</select>
 	
 </mapper>

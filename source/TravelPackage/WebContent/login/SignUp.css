@@ -12,8 +12,8 @@ body {
 
 .joinForm {
   position:absolute;
-  width:400px;
-  height:400px;
+  width:1000px;
+  height:600px;
   padding: 30px, 20px;
   background-color:#FFFFFF;
   text-align:center;
@@ -36,7 +36,7 @@ body {
 
 
 .id {
-  width: 100%;
+  width: 90%;
   border:none;
   outline:none;
   color: #636e72;
@@ -85,7 +85,7 @@ body {
   background: none;
 }
 
-.cellphoneNo {
+.tel {
   width: 100%;
   border:none;
   outline:none;
@@ -97,10 +97,10 @@ body {
 
 .btn {
   position:relative;
-  left:40%;
+  left:20%;
   transform: translateX(-50%);
   margin-bottom: 40px;
-  width:80%;
+  width:40%;
   height:40px;
   background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
   background-position: left;

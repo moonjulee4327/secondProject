@@ -19,7 +19,7 @@ AcommodationVO acmv = (AcommodationVO) request.getAttribute("acmv");
 <body>
 	<table border="1" bgcolor="aqua">
 		<tr>
-			<td>I D :</td>
+			<td>숙박업소ID :</td>
 			<td><%=acmv.getAcmId()%></td>
 		</tr>
 		<tr>
@@ -35,12 +35,16 @@ AcommodationVO acmv = (AcommodationVO) request.getAttribute("acmv");
 			<td><%=acmv.getAddr()%></td>
 		</tr>
 		<tr>
-			<td>가격 :</td>
+			<td>투숙금액 :</td>
 			<td><%=acmv.getPrice()%></td>
 		</tr>
 		<tr>
-			<td>수량 :</td>
+			<td>객실수 :</td>
 			<td><%=acmv.getQty()%></td>
+		</tr>
+		<tr>
+			<td>등록일자 :</td>
+			<td><%=acmv.getAcmRd()%></td>
 		</tr>
 		<tr>
 			<td>작성자 :</td>
@@ -54,7 +58,7 @@ AcommodationVO acmv = (AcommodationVO) request.getAttribute("acmv");
 				for(AtchFileVO fileVO : atchFileList){
 			%>
 				<div>
-					<a href="<%=request.getContextPath()%>/filedown.do?fileId=<%=fileVO.getAtchFileId()%>&fileSn=<%=fileVO.getFileSn()%>"><%=fileVO.getOrignlFileNm() %></a>
+					<a href="<%=request.getContextPath()%>/filedown.do?fileId=<%=fileVO.getATCH_FILE_ID()%>&fileSn=<%=fileVO.getATCH_DE_SEQ()%>"><%=fileVO.getATCH_DE_OG() %></a>
 				</div> <% 
 				}
 			}

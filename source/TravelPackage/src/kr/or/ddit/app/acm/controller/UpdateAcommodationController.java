@@ -1,6 +1,6 @@
 package kr.or.ddit.app.acm.controller;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,16 +23,16 @@ import kr.or.ddit.app.common.vo.AtchFileVO;
  * Servlet implementation class UpdateMemberController
  */
 @MultipartConfig
-@WebServlet("/acm/update.do")
+@WebServlet("/acm/AcmUpdate.do")
 public class UpdateAcommodationController extends HttpServlet {
-   private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L; 
 
    /**
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       
-      int acmId = Integer.parseInt(req.getParameter("acmId"));
+      String acmId = req.getParameter("acmId");
       
       // 1. 서비스 객체 생성하기
       IAcommodationService acmService = AcommodationServiceImpl.getInstance();
@@ -40,10 +40,10 @@ public class UpdateAcommodationController extends HttpServlet {
       
       IAtchFileService fileService = AtchFileServiceImpl.getInstance();
       
-      if(acmv.getAcmAtchFileId() > 0) { // 첨부파일 존재
+      if(acmv.getAtchFileId() > 0) { // 첨부파일 존재
     	  // 1-2. 첨부파일 정보 조회
     	  AtchFileVO fileVO = new AtchFileVO();
-    	  fileVO.setAtchFileId(acmv.getAcmAtchFileId());
+    	  fileVO.setATCH_FILE_ID(acmv.getAtchFileId());
     	  
     	  List<AtchFileVO> atchFileList = 
     			  fileService.getAtchFileList(fileVO);
@@ -64,14 +64,15 @@ public class UpdateAcommodationController extends HttpServlet {
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	   
 		// 1. 파라미터 데이터 가져오기
-		int acmId = Integer.parseInt(req.getParameter("acmId"));
+		String acmId = req.getParameter("acmId");
 		String acmNm = req.getParameter("acmNm");
 		String acmSe = req.getParameter("acmSe");
 		String Addr = req.getParameter("Addr");
-		int Price = Integer.parseInt(req.getParameter("Price"));
-		int Qty = Integer.parseInt(req.getParameter("Qty"));
+		String Price = req.getParameter("Price");
+		String Qty = req.getParameter("Qty");
 		String Writer = req.getParameter("Writer");
-		Long atchFileId = Long.parseLong(req.getParameter("AcmAtchFileId"));
+		
+//		long atchFileId = Long.parseLong(req.getParameter("ATCH_FILE_ID"));
 		
 		// 2. 서비스 객체 생성하기
 		IAcommodationService acmService = AcommodationServiceImpl.getInstance();
@@ -90,13 +91,13 @@ public class UpdateAcommodationController extends HttpServlet {
 	   acmv.setQty(Qty);
 	   acmv.setWriter(Writer);
 	   
-	   if(atchFileVO == null) { // 새로운 첨부파일이 존재하지 않으면
-		   // 기존 첨부 파일 ID 설정하기
-		   acmv.setAcmAtchFileId(atchFileId);
-	   } else { 
-		   // 신규 첨부 파일 ID 설정하기
-		   acmv.setAcmAtchFileId(atchFileVO.getAtchFileId());
-	   }
+//	   if(atchFileVO == null) { // 새로운 첨부파일이 존재하지 않으면
+//		   // 기존 첨부 파일 ID 설정하기
+//		   acmv.setAtchFileId(atchFileId);
+//	   } else { 
+//		   // 신규 첨부 파일 ID 설정하기
+//		   acmv.setAtchFileId(atchFileVO.getATCH_FILE_ID());
+//	   }
 	   
 	   
 	   int cnt = acmService.modify(acmv);
@@ -116,7 +117,7 @@ public class UpdateAcommodationController extends HttpServlet {
 	   
 	  
 	   // 4. 목록 조회 화면으로 이동
-	   String redirectUrl  = req.getContextPath() + "/acm/acmList.do";
+	   String redirectUrl  = req.getContextPath() + "/acm/AcmList.do";
 	   
 	   resp.sendRedirect(redirectUrl);
 	   
