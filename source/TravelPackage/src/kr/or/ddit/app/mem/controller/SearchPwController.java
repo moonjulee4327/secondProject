@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import kr.or.ddit.app.mem.service.IMemService;
 import kr.or.ddit.app.mem.service.MemServiceImpl;
 import kr.or.ddit.app.mem.vo.MemberVO;
@@ -39,10 +40,11 @@ public class SearchPwController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		PrintWriter out = resp.getWriter();
+				
 		
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-		String user = "아이디"; // 패스워드
-		String password = "패스워드";
+		String user = ""; // 패스워드
+		String password = "";
 		String memMail = req.getParameter("memMail");
 		String memTel = req.getParameter("memTel");
 

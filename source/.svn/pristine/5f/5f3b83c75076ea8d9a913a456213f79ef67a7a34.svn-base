@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+let compareResult = false;
+ function comparePwd() {
+	let pwd1 = $("#pw").val();
+	let pwd2 = $("#ckPw").val();
+	let pwResult = $("#pwResult");
+	
+	//alert(pwd1);
+	//alert(pwd2);
+	
+	if(pwd1 == pwd2){
+		compareResult = true;
+		pwResult.text("비밀번호가 일치합니다.");
+	}else{
+		compareResult = false;
+		pwResult.text("비밀번호가 일치하지 않습니다.");
+	}
+}
+
+function joinMember() {
+	if(compareResult == true){
+		
+	}else{
+		alert("비밀번호가 일치하지 않아 회원가입이 불가합니다!");
+		return;
+	}
+}
