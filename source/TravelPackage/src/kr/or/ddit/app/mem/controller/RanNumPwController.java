@@ -62,8 +62,8 @@ public class RanNumPwController extends HttpServlet{
 		memService.ranNumPw(mv);
 		
 		String host = "smtp.naver.com";
-		String user = ""; // 자신의 네이버 계정
-		String password = "";// 자신의 네이버 패스워드
+		String user = "sitead987@naver.com"; // 자신의 네이버 계정
+		String password = "minsite1346~!@!";// 자신의 네이버 패스워드
 
 		// 메일 받을 주소
 		/* String to_email = m.getEmail(); */

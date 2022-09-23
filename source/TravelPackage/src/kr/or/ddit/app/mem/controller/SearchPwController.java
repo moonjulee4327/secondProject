@@ -43,8 +43,8 @@ public class SearchPwController extends HttpServlet {
 				
 		
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-		String user = ""; // 패스워드
-		String password = "";
+		String user = "intensity23@naver.com"; // 패스워드
+		String password = "tmdgns1223,";
 		String memMail = req.getParameter("memMail");
 		String memTel = req.getParameter("memTel");
 
